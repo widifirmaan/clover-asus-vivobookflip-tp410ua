@@ -4,7 +4,6 @@
 
 [![Clover](https://img.shields.io/badge/Bootloader-Clover-blue?style=for-the-badge&logo=apple)](https://sourceforge.net/projects/cloverefiboot/)
 [![macOS](https://img.shields.io/badge/macOS-Supported-brightgreen?style=for-the-badge&logo=apple)](https://www.apple.com/macos/)
-[![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Working-success?style=for-the-badge)](https://github.com)
 
 **Konfigurasi Clover EFI siap pakai untuk menjalankan macOS di laptop ASUS VivoBook Flip TP410UA**
@@ -271,12 +270,6 @@ Kontribusi sangat diterima! Jika Anda menemukan cara untuk meningkatkan konfigur
 - Penulis tidak bertanggung jawab atas kerusakan hardware atau data loss
 - Backup data penting sebelum memulai proses instalasi
 - Gunakan dengan risiko Anda sendiri
-
----
-
-## 📄 Lisensi
-
-Proyek ini dilisensikan di bawah MIT License - lihat file [LICENSE](LICENSE) untuk detail.
 
 ---
 
