@@ -188,7 +188,6 @@ killall coreaudiod
 
 - Verifikasi VoodooI2C kext terinstall
 - Update ke versi kext terbaru
-- Reset trackpad di BIOS
 
 ### Baterai Tidak Terdeteksi
 
