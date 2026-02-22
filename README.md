@@ -15,18 +15,6 @@
 
 ---
 
-## 📋 Daftar Isi
-
-- [Spesifikasi Hardware](#spesifikasi-hardware)
-- [Fitur yang Didukung](#fitur-yang-didukung)
-- [Prasyarat Instalasi](#prasyarat-instalasi)
-- [Panduan Instalasi](#panduan-instalasi)
-- [Troubleshooting](#troubleshooting)
-- [File Konfigurasi](#file-konfigurasi)
-- [Kontribusi](#kontribusi)
-
----
-
 ## 💻 Spesifikasi Hardware
 
 **ASUS VivoBook Flip TP410UA**
