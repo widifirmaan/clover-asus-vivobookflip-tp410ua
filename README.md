@@ -2,7 +2,7 @@
 
 # 🍎 Clover EFI - ASUS VivoBook Flip TP410UA
 
-**Clover EFI** is a refined, ready-to-use configuration for running **macOS** on the **ASUS VivoBook Flip TP410UA**. This project ensures a seamless Hackintosh experience by providing carefully patched ACPI files and essential kernel extensions.
+**Clover EFI** is a refined, ready-to-use configuration for running **macOS** on the **ASUS VivoBook Flip TP410UA**. This project provides carefully patched ACPI files and essential kernel extensions for daily system stability.
 
 ![Status](https://img.shields.io/badge/Status-Working-success?style=for-the-badge)
 ![Clover](https://img.shields.io/badge/Bootloader-Clover-blue?style=for-the-badge&logo=apple)
@@ -13,15 +13,8 @@
 
 </div>
 
-## 📸 Showcase
-Explore the performance and visual interface of macOS on the ASUS TP410UA.
-
-| | |
-|:---:|:---:|
-| ![About This Mac](doc/about_mac.png)<br>**About This Mac** | ![Desktop](doc/desktop.png)<br>**Desktop Environment** |
-| ![Clover GUI](doc/clover_gui.png)<br>**Clover Boot Menu** | ![System Info](doc/system_info.png)<br>**Hardware Info** |
-
-> *Note: Place your own screenshots in the `doc/` folder and update the links above.*
+## 📸 Hardware & Configuration Notes
+This Clover EFI configuration is tailored specifically for the **ASUS VivoBook Flip TP410UA** (Intel Core i7-8550U, UHD Graphics 620). Comprehensive setup guides and ACPI patching references are available in the [`doc/`](doc/) folder.
 
 ---
 
@@ -29,7 +22,7 @@ Explore the performance and visual interface of macOS on the ASUS TP410UA.
 
 ### ✅ Working Features
 *   ✨ **Graphics Acceleration**: Intel UHD 620 fully accelerated with Metal support.
-*   🔊 **Audio**: Realtek ALC256 crystal clear audio via AppleALC.
+*   🔊 **Audio**: Realtek ALC256 internal speakers and combo audio jack via AppleALC.
 *   🔋 **Battery Management**: Accurate status monitoring with ACPIBatteryManager.
 *   💾 **Storage**: Full NVMe performance for fast boot and app loading.
 *   🖱️ **Trackpad**: Smooth multi-touch gestures with VoodooI2C.
@@ -60,16 +53,19 @@ Explore the performance and visual interface of macOS on the ASUS TP410UA.
 ## 🛠 Tech Stack
 
 ### Bootloader & Core
-*   **Version**: Clover Bootloader
-*   **ACPI**: Custom Patched DSDT/SSDT (DSDT.aml, SSDT-PNLF.aml)
-*   **Framework**: Lilu + WhateverGreen for graphics and system fixes.
+*   **Bootloader**: Clover Bootloader (UEFI)
+*   **SMBIOS Profile**: `MacBookAir8,1` (Tailored for Intel Core i7-8550U Kaby Lake-R)
+*   **ACPI**: Custom Patched DSDT/SSDT (`DSDT.aml`, `SSDT-PNLF.aml`)
+*   **Core Framework**: Lilu + WhateverGreen for graphics and system fixes.
 
 ### Kernel Extensions (Kexts)
-*   **Audio**: `AppleALC`
-*   **Virtualization**: `VirtualSMC`
-*   **Touchpad**: `VoodooI2C` & `VoodooI2CHID`
-*   **Battery**: `ACPIBatteryManager`
-*   **Tools**: `USBInjectAll` for port mapping.
+*   **Core & Graphics**: `Lilu`, `WhateverGreen`
+*   **Audio**: `AppleALC`, `CodecCommander`
+*   **SMC & Power**: `VirtualSMC`, `ACPIBatteryManager`
+*   **Touchpad, Touchscreen & Input**: `VoodooI2C`, `VoodooI2CHID`, `VoodooI2CELAN`, `VoodooI2CSynaptics`, `VoodooI2CAtmelMXT`, `VoodooI2CFTE`, `VoodooI2CUPDDEngine`, `VoodooPS2Controller`, `AsusNBFnKeys`
+*   **Bluetooth & Continuity**: `BT4LEContiunityFixup`
+*   **System Fixes & CPU**: `FakePCIID`, `EFICheckDisabler`, `VoodooTSCSync`
+*   **USB & Networking**: `USBInjectAll`, `GenericUSBXHCI`, `NullEthernet`, `RtWlanU`, `RtWlanU1827`
 
 ---
 
@@ -130,10 +126,10 @@ cd clover-asus-vivobookflip-tp410ua
 
 | macOS Version | Status | Notes |
 |:---:|:---:|:---|
-| Big Sur (11.x) | ✅ Tested | High Stability |
-| Monterey (12.x) | ✅ Tested | Recommended Version |
-| Ventura (13.x) | ⚠️ Beta | Experimental patches needed |
-| Sonoma (14.x) | ❌ Untested | Older hardware support |
+| High Sierra (10.13.x) | ✅ Supported | Native support with AptioMemoryFix |
+| Mojave (10.14.x) | ✅ Supported | Full Metal acceleration on UHD 620 |
+| Catalina (10.15.x) | ✅ Supported | High stability for daily development |
+| Big Sur (11.x) & Newer | ⚠️ Needs OpenCore | Legacy Clover + AptioMemoryFix cannot boot macOS 11+; OpenCore with OpenRuntime required |
 
 ---
 
@@ -152,14 +148,4 @@ Special thanks to the **Hackintosh Community** for the continuous support.
 ---
 
 ## 📄 License
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
-
-<div align="center">
-
-**Created with ❤️ for the Hackintosh Community**
-
-If this configuration helps you, please consider giving it a ⭐!
-
-*Last updated: February 2026*
-
-</div>
+This configuration is released for educational and personal use under the **MIT License**.
