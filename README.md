@@ -1,151 +1,116 @@
-<div align="center">
+# Clover EFI TP410UA
 
-# 🍎 Clover EFI - ASUS VivoBook Flip TP410UA
+> Tailored Clover EFI bootloader configuration for running macOS High Sierra, Mojave, and Catalina on the ASUS VivoBook Flip TP410UA.
 
-**Clover EFI** is a refined, ready-to-use configuration for running **macOS** on the **ASUS VivoBook Flip TP410UA**. This project provides carefully patched ACPI files and essential kernel extensions for daily system stability.
-
-![Status](https://img.shields.io/badge/Status-Working-success?style=for-the-badge)
-![Clover](https://img.shields.io/badge/Bootloader-Clover-blue?style=for-the-badge&logo=apple)
-![macOS](https://img.shields.io/badge/macOS-Supported-brightgreen?style=for-the-badge&logo=apple)
-![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+[![macOS](https://img.shields.io/badge/macOS-10.13_%7C_10.14_%7C_10.15-brightgreen?style=flat-square&logo=apple&logoColor=white)](https://www.apple.com/macos/)
+[![Bootloader](https://img.shields.io/badge/Bootloader-Clover_UEFI-blue?style=flat-square&logo=apple&logoColor=white)](https://github.com/CloverHackyColor/CloverBootloader)
+[![SMBIOS](https://img.shields.io/badge/SMBIOS-MacBookAir8%2C1-8B5CF6?style=flat-square)](https://everymac.com/)
+[![Status](https://img.shields.io/badge/Status-Verified_Stable-success?style=flat-square)](#fitur)
 
 ---
 
-</div>
+## Hardware Target & Status
 
-## 📸 Hardware & Configuration Notes
-This Clover EFI configuration is tailored specifically for the **ASUS VivoBook Flip TP410UA** (Intel Core i7-8550U, UHD Graphics 620). Comprehensive setup guides and ACPI patching references are available in the [`doc/`](doc/) folder.
-
----
-
-## 🚀 Features Overview
-
-### ✅ Working Features
-*   ✨ **Graphics Acceleration**: Intel UHD 620 fully accelerated with Metal support.
-*   🔊 **Audio**: Realtek ALC256 internal speakers and combo audio jack via AppleALC.
-*   🔋 **Battery Management**: Accurate status monitoring with ACPIBatteryManager.
-*   💾 **Storage**: Full NVMe performance for fast boot and app loading.
-*   🖱️ **Trackpad**: Smooth multi-touch gestures with VoodooI2C.
-*   ⌨️ **Keyboard**: Fully functional ASUS hotkeys and backlight control.
-*   📊 **Display**: PNLF support for brightness control and night shift.
-*   🔌 **Connectivity**: All USB ports and HDMI output functional.
-
-### ⚠️ Known Issues
-*   **AirDrop**: Currently restricted due to Intel Wireless hardware limitations.
+- **Model**: ASUS VivoBook Flip TP410UA (TP410UAR)
+- **Processor**: Intel Core i7-8550U (Kaby Lake Refresh, 4 Cores / 8 Threads, up to 4.0 GHz)
+- **Graphics**: Intel UHD Graphics 620 (Full Metal 2 Acceleration, 1536 MB VRAM)
+- **Audio Codec**: Realtek ALC256 (Combo Audio Jack & Internal Speakers via AppleALC Layout ID 13/21)
+- **Trackpad & Screen**: ELAN/Synaptics I2C Touchpad with Multi-Touch Gestures & FHD IPS Touchscreen
+- **Tested macOS Releases**: macOS 10.13 High Sierra, macOS 10.14 Mojave, macOS 10.15 Catalina
 
 ---
 
-## 💻 Hardware Specifications
+## Fitur
 
-| Component | Specification |
-|:---:|:---|
-| **Processor** | Intel Core i7-8550U (Kaby Lake Refresh) |
-| **Graphics** | Intel UHD Graphics 620 |
-| **RAM** | Up to 16GB DDR4 |
-| **Storage** | NVMe SSD Support |
-| **Display** | 14" Full HD IPS Touchscreen |
-| **Audio** | Realtek ALC256 Codec |
-| **Wireless** | Intel WiFi & Bluetooth |
-| **Trackpad** | ELAN/Synaptics I2C |
+- **Full Graphics Acceleration**: Native Intel UHD Graphics 620 acceleration with Metal 2 framework support powered by Lilu and WhateverGreen.
+- **Crystal Audio & Jack Sensing**: Realtek ALC256 audio configuration with internal stereo speaker output, combo headset jack sensing, and microphone input via AppleALC and CodecCommander.
+- **Native Power & Battery Management**: Precise 16-stage battery status monitoring and CPU speed stepping via ACPIBatteryManager and VirtualSMC.
+- **I2C Touchpad & Touchscreen**: Smooth macOS multi-touch gestures, palm rejection, and touchscreen input powered by VoodooI2C, VoodooI2CHID, and VoodooI2CELAN.
+- **ASUS Hotkeys & Backlight**: Integrated keyboard hotkey handling (brightness control, audio keys) and ambient backlight control via AsusNBFnKeys.
+- **Display Brightness & Night Shift**: Hardware PNLF backlight slider support with native macOS Night Shift integration.
+- **NVMe & Storage Performance**: Native NVMe controller passthrough for high-throughput system boots and application loading.
+- **Broad USB Mapping**: Complete USB port layout mapping via USBInjectAll ensuring high-speed USB 3.0 Type-A and Type-C connectivity.
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
-### Bootloader & Core
-*   **Bootloader**: Clover Bootloader (UEFI)
-*   **SMBIOS Profile**: `MacBookAir8,1` (Tailored for Intel Core i7-8550U Kaby Lake-R)
-*   **ACPI**: Custom Patched DSDT/SSDT (`DSDT.aml`, `SSDT-PNLF.aml`)
-*   **Core Framework**: Lilu + WhateverGreen for graphics and system fixes.
-
-### Kernel Extensions (Kexts)
-*   **Core & Graphics**: `Lilu`, `WhateverGreen`
-*   **Audio**: `AppleALC`, `CodecCommander`
-*   **SMC & Power**: `VirtualSMC`, `ACPIBatteryManager`
-*   **Touchpad, Touchscreen & Input**: `VoodooI2C`, `VoodooI2CHID`, `VoodooI2CELAN`, `VoodooI2CSynaptics`, `VoodooI2CAtmelMXT`, `VoodooI2CFTE`, `VoodooI2CUPDDEngine`, `VoodooPS2Controller`, `AsusNBFnKeys`
-*   **Bluetooth & Continuity**: `BT4LEContiunityFixup`
-*   **System Fixes & CPU**: `FakePCIID`, `EFICheckDisabler`, `VoodooTSCSync`
-*   **USB & Networking**: `USBInjectAll`, `GenericUSBXHCI`, `NullEthernet`, `RtWlanU`, `RtWlanU1827`
+| Category | Technology | Description / Purpose |
+| :--- | :--- | :--- |
+| **Bootloader** | Clover EFI (UEFI Mode) | Modern UEFI bootloader with custom ACPI table injection and patch engine |
+| **SMBIOS Profile** | `MacBookAir8,1` | Native power and thermal profile matching Intel Core i7-8550U Kaby Lake-R |
+| **ACPI Patches** | Custom Patched DSDT & SSDT | `DSDT.aml`, `SSDT-PNLF.aml`, and EC patches for sleep, brightness, and battery |
+| **Core & Graphics** | `Lilu.kext`, `WhateverGreen.kext` | Essential kernel patcher and Intel UHD 620 framebuffer injection |
+| **Audio** | `AppleALC.kext`, `CodecCommander.kext` | Native AppleHDA patching for Realtek ALC256 codec |
+| **Power & Sensor** | `VirtualSMC.kext`, `ACPIBatteryManager.kext` | Apple SMC emulation and hardware battery gauge integration |
+| **Touchpad & Input** | `VoodooI2C.kext`, `VoodooI2CHID.kext`, `VoodooPS2Controller.kext`, `AsusNBFnKeys.kext` | Multi-touch I2C trackpad gestures, keyboard mapping, and Asus Fn keys |
+| **Connectivity** | `BT4LEContiunityFixup`, `USBInjectAll`, `GenericUSBXHCI`, `RtWlanU` | Bluetooth BLE continuity patches, USB 3.0 routing, and wireless support |
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```bash
 /
-├── CLOVERX64.efi              # Core Clover Bootloader
-├── config.plist               # Main configuration file
-├── ACPI/                      # ACPI Patches (DSDT/SSDT)
-│   ├── origin/                # Original firmware files
-│   └── patched/               # Modified/Patched files
-├── drivers64UEFI/             # Modern UEFI drivers (APFS, HFS+)
-├── kexts/Other/               # Essential Kernel Extensions
-├── themes/                    # Visual bootloader themes
-└── tools/                     # System utilities (UEFI Shell)
+├── CLOVERX64.efi              # Core Clover EFI bootloader binary
+├── config.plist               # Master Clover configuration file (SMBIOS MacBookAir8,1)
+├── ACPI/                      # ACPI tables and patches
+│   ├── origin/                # Extracted OEM firmware tables
+│   └── patched/               # Modified DSDT and SSDT tables (DSDT.aml, SSDT-PNLF.aml)
+├── drivers64UEFI/             # 64-bit UEFI drivers (ApfsDriverLoader, AptioMemoryFix, HFSPlus)
+├── kexts/Other/               # Essential kernel extensions (Lilu, WhateverGreen, AppleALC, VoodooI2C)
+├── themes/                    # Visual bootloader themes (metal, newyear, christmas)
+├── tools/                     # Hardware diagnostics and UEFI shell binaries
+├── doc/                       # Setup documentation and ACPI patching references
+└── README.md
 ```
 
 ---
 
-## 📦 Getting Started
+## Tutorial Run Local & Setup
 
-### Prerequisites
-*   **Laptop**: ASUS VivoBook Flip TP410UA.
-*   **Storage**: USB Drive (8GB+).
-*   **Firmware**: Secure Boot Disabled and AHCI Mode enabled.
+### 1. Prerequisites
 
-### 1. Repository Setup
+- **Target Laptop**: ASUS VivoBook Flip TP410UA / TP410UAR.
+- **USB Flash Drive**: 8 GB or higher formatted as FAT32 / GUID Partition Map.
+- **BIOS Configuration**:
+  - Disable **Secure Boot** and **Fast Boot**.
+  - Set SATA Controller Mode to **AHCI**.
+  - Set DVMT Pre-Allocated to **64MB** (or default if locked).
+
+### 2. EFI Deployment
+
 ```bash
+# 1. Clone the repository
 git clone https://github.com/widifirmaan/clover-asus-vivobookflip-tp410ua.git
 cd clover-asus-vivobookflip-tp410ua
+
+# 2. Mount your target EFI partition
+# macOS:
+sudo diskutil mount /dev/diskXs1
+
+# 3. Copy the repository contents into EFI/CLOVER on your EFI partition
+mkdir -p /Volumes/EFI/EFI/CLOVER
+cp -R * /Volumes/EFI/EFI/CLOVER/
 ```
 
-### 2. Manual Installation
-1.  **Mount EFI Partition**: Use `diskutil` (macOS) or Disk Management (Windows/Linux) to mount your EFI partition.
-2.  **Deploy Files**: Copy the contents of this repository to the `EFI/CLOVER` directory on your EFI partition.
-3.  **Bios Config**: Disable Secure Boot, Fast Boot, and set SATA mode to AHCI.
-4.  **Reboot**: Select Clover as your primary boot option in BIOS.
+### 3. Compatibility Matrix
+
+| macOS Version | Support Status | Architecture Notes |
+| :---: | :---: | :--- |
+| **High Sierra (10.13.x)** | ✅ Native Support | Full stability with AptioMemoryFix and native graphics acceleration |
+| **Mojave (10.14.x)** | ✅ Native Support | Recommended daily driver release with Metal 2 UHD 620 acceleration |
+| **Catalina (10.15.x)** | ✅ Native Support | Fully compatible with 64-bit apps and updated VoodooI2C kexts |
+| **Big Sur (11.x) & Newer** | ⚠️ Requires OpenCore | Legacy Clover + AptioMemoryFix lacks runtime support for macOS 11+ kernel |
+
+### 4. Troubleshooting Guide
+
+- **Bootloader Hangs at Startup**: Pass `-v` boot argument in Clover Options to view verbose kernel logs.
+- **Audio Output Lost After Sleep**: Reset `coreaudiod` service (`sudo killall coreaudiod`) or verify ALC layout ID in `config.plist`.
+- **Trackpad Not Responding**: Ensure `VoodooI2C.kext` and `VoodooI2CHID.kext` are loaded in `kexts/Other/` and I2C controller is enabled in BIOS.
 
 ---
 
-## 🔧 Troubleshooting
+## Author
 
-### Boot Issues
-*   **Bootloader tidak muncul**: Periksa apakah file EFI sudah tersalin dengan benar, verifikasi urutan boot di BIOS, atau coba reset NVRAM/PRAM.
-*   **Verbose Mode**: Use `-v` boot argument to see the boot log if it hangs.
-*   **Safe Mode**: Use `-x` for minimal driver loading.
-*   **Kernel Panic**: Usually related to incompatible kexts or SMBIOS. Lihat log dengan `-v`, periksa versi kext, atau gunakan Safe Boot.
-
-### Feature Fixes
-*   **Audio**: If audio is lost, try resetting `coreaudiod` (e.g., `killall coreaudiod`) or check the Layout ID in `config.plist`.
-*   **Trackpad**: Ensure VoodooI2C kexts are loaded and the trackpad is not disabled in BIOS.
-*   **Baterai**: Pastikan `ACPIBatteryManager.kext` aktif dan periksa `SSDT-EC` di folder ACPI.
-
----
-
-## 📊 Compatibility Matrix
-
-| macOS Version | Status | Notes |
-|:---:|:---:|:---|
-| High Sierra (10.13.x) | ✅ Supported | Native support with AptioMemoryFix |
-| Mojave (10.14.x) | ✅ Supported | Full Metal acceleration on UHD 620 |
-| Catalina (10.15.x) | ✅ Supported | High stability for daily development |
-| Big Sur (11.x) & Newer | ⚠️ Needs OpenCore | Legacy Clover + AptioMemoryFix cannot boot macOS 11+; OpenCore with OpenRuntime required |
-
----
-
-## 👥 Authors
-Developed and maintained by **Widi Firmaan**.
-Special thanks to the **Hackintosh Community** for the continuous support.
-
----
-
-## ⚠️ Disclaimer
-*   This project is for educational and research purposes only.
-*   Running macOS on non-Apple hardware may violate Apple's TOS.
-*   The author is not responsible for any hardware damage or data loss.
-*   **Always backup your data before proceeding.**
-
----
-
-## 📄 License
-This configuration is released for educational and personal use under the **MIT License**.
+Made with ❤️ by **Widi Firmansyah** / [widifirmaan.web.id](https://widifirmaan.web.id)
