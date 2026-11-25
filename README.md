@@ -37,7 +37,7 @@ Clover UEFI bootloader configuration, patched ACPI tables, and kernel extensions
 - **BIOS Settings**: Disable Secure Boot and Fast Boot; set SATA Mode to `AHCI`
 - **No database or application server required** (static EFI bootloader configuration)
 
-### Deploy to EFI Partition
+### Quick Start
 
 Copy the contents of this repository directly into your mounted EFI partition's `/Volumes/EFI/EFI/CLOVER` directory (do not nest `CLOVER/` twice):
 
